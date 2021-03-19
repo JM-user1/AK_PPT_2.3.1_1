@@ -3,16 +3,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Edit User</title>
 </head>
 <body>
   <h2>Edit User</h2>
 
-<!--  <c:url value="/edit" var="var"/>-->
-<!--  <form action="${var}" method="POST">-->
-  <form action="/edit" th:object="${user} ">
-
-    <input type="hidden" name="id" value="${user.id}">
+  <form th:method="PATCH" th:action="@{/edit/{id}(id=${user.getId()})}" th:object="${user} ">
     <label for="title">Name</label>
     <input type="text" th:field="*{firstName}" id="title"/>
     <label for="year">Last Name</label>
@@ -20,14 +16,6 @@
     <label for="genre">Age</label>
     <input type="text" th:field="*{age}" id="genre"/>
     <input type="submit" value="Edit user">
-<!--    <input type="hidden" name="id" value="${user.id}">-->
-<!--    <label for="title">Name</label>-->
-<!--    <input type="text" name="firstName" id="title">-->
-<!--    <label for="year">Last Name</label>-->
-<!--    <input type="text" name="lastName" id="year">-->
-<!--    <label for="genre">Age</label>-->
-<!--    <input type="text" name="age" id="genre">-->
-<!--    <input type="submit" value="Edit user">-->
   </form>
 </body>
 </html>

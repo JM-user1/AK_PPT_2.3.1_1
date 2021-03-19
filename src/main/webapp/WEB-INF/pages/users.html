@@ -7,9 +7,6 @@
 <body>
 
 <h2>Users</h2>
-<!--<div th:each="user : ${userList}">-->
-<!--  <p th:text="${user.toString()}">us</p>-->
-<!--</div>-->
 
 <table>
   <tr>
@@ -24,10 +21,11 @@
       <td th:text="${user.firstName}">name</td>
       <td th:text="${user.lastName}">lastName</td>
       <td th:text="${user.age}">age</td>
-      <td>
-        <a th:href="@{/edit/{id}(id=${user.getId()})}">edit</a>
-<!--        <a href="/edit/${user.id}">edit</a>-->
-        <a href="/delete/${user.id}">delete</a>
+        <td>
+            <a th:href="@{/edit/{id}(id=${user.getId()})}" th:class="c">edit</a>
+          <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
+              <input type="submit" value="delete"/>
+          </form>
       </td>
     </tr>
 </table>
@@ -42,12 +40,6 @@
         <input type="submit" value="Add user">
       </form>
 
-
-
-
-<h2>Add</h2>
-
-<a href="${add}">Add new user</a>
 
 </body>
 </html>
