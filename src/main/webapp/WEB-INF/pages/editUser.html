@@ -8,17 +8,26 @@
 <body>
   <h2>Edit User</h2>
 
-  <c:url value="/edit" var="var"/>
-  <form action="${var}" method="POST">
-  <form action="/edit" th:value="${user} ">
+<!--  <c:url value="/edit" var="var"/>-->
+<!--  <form action="${var}" method="POST">-->
+  <form action="/edit" th:object="${user} ">
+
     <input type="hidden" name="id" value="${user.id}">
     <label for="title">Name</label>
-    <input type="text" name="firstName" id="title">
+    <input type="text" th:field="*{firstName}" id="title"/>
     <label for="year">Last Name</label>
-    <input type="text" name="lastName" id="year">
+    <input type="text" th:field="*{lastName}" id="year"/>
     <label for="genre">Age</label>
-    <input type="text" name="age" id="genre">
+    <input type="text" th:field="*{age}" id="genre"/>
     <input type="submit" value="Edit user">
+<!--    <input type="hidden" name="id" value="${user.id}">-->
+<!--    <label for="title">Name</label>-->
+<!--    <input type="text" name="firstName" id="title">-->
+<!--    <label for="year">Last Name</label>-->
+<!--    <input type="text" name="lastName" id="year">-->
+<!--    <label for="genre">Age</label>-->
+<!--    <input type="text" name="age" id="genre">-->
+<!--    <input type="submit" value="Edit user">-->
   </form>
 </body>
 </html>

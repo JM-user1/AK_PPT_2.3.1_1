@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -8,6 +7,10 @@
 <body>
 
 <h2>Users</h2>
+<!--<div th:each="user : ${userList}">-->
+<!--  <p th:text="${user.toString()}">us</p>-->
+<!--</div>-->
+
 <table>
   <tr>
     <th>id</th>
@@ -15,21 +18,35 @@
     <th>lastName</th>
     <th>age</th>
   </tr>
-  <c:forEach var="film" items="${filmsList}">
-    <tr th:each="user : ${userList}">
+<!--  <c:forEach var="film" items="${userList}">-->
+    <tr th:each="user : ${users}">
       <td th:text="${user.id}">id</td>
       <td th:text="${user.firstName}">name</td>
       <td th:text="${user.lastName}">lastName</td>
       <td th:text="${user.age}">age</td>
       <td>
-        <a href="/edit/${user.id}">edit</a>
+        <a th:href="@{/edit/{id}(id=${user.getId()})}">edit</a>
+<!--        <a href="/edit/${user.id}">edit</a>-->
         <a href="/delete/${user.id}">delete</a>
       </td>
     </tr>
 </table>
+      <form th:method="POST" action="#" th:action="@{/}" th:object="${user}">
+<!--        <input type="hidden" name="id" value="${user.id}">-->
+        <label for="title">Name</label>
+          <input type="text" th:field="*{firstName}" id="title"/>
+        <label for="year">Last Name</label>
+          <input type="text" th:field="*{lastName}" id="year"/>
+        <label for="genre">Age</label>
+          <input type="text" th:field="*{age}" id="genre"/>
+        <input type="submit" value="Add user">
+      </form>
+
+
 
 
 <h2>Add</h2>
+
 <a href="${add}">Add new user</a>
 
 </body>
