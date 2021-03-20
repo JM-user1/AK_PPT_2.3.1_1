@@ -1,7 +1,6 @@
 package testfolder.dao;
 
 import java.util.List;
-import java.util.Optional;
 
 import testfolder.model.User;
 

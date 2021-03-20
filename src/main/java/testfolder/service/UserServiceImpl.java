@@ -1,12 +1,10 @@
 package testfolder.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import testfolder.dao.UserDao;
-import testfolder.dao.UserDaoImpl;
 import testfolder.model.User;
 
 import javax.transaction.Transactional;
