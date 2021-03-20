@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDao{
 
 
 
-  @PersistenceContext
+  @PersistenceContext(unitName = "entityManagerFactory")
   private EntityManager entityManager;
 
   @Override
@@ -39,39 +39,42 @@ public class UserDaoImpl implements UserDao{
   }
 
   @Override
+  @Transactional
   public void add(User user) {
 //    user.setId(AUTO_ID.getAndIncrement());
 //    users.put(user.getId(), user);
-    entityManager.getTransaction().begin();
+//    entityManager.getTransaction().begin();
     entityManager.persist(user);
-    entityManager.getTransaction().commit();
+//    entityManager.getTransaction().commit();
   }
 
   @Override
+  @Transactional
   public void delete(int id) {
-    entityManager.getEntityManagerFactory();
-    entityManager.getTransaction().begin();
+//    entityManager.getEntityManagerFactory();
+//    entityManager.getTransaction().begin();
     User user = entityManager.find(User.class, id);
     entityManager.remove(user);
-    entityManager.getTransaction().commit();
+//    entityManager.getTransaction().commit();
   }
 
   @Override
+  @Transactional
   public void edit(int id, User editedUser) {
-    entityManager.getEntityManagerFactory();
+//    entityManager.getEntityManagerFactory();
     User updatedUser = getById(id);
     entityManager.detach(updatedUser);
     updatedUser.setFirstName(editedUser.getFirstName());
     updatedUser.setLastName(editedUser.getLastName());
     updatedUser.setAge(editedUser.getAge());
-    entityManager.getTransaction().begin();
+//    entityManager.getTransaction().begin();
     entityManager.merge(updatedUser);
-    entityManager.getTransaction().commit();
+//    entityManager.getTransaction().commit();
   }
 
-
+  @Override
   public User getById(int id) {
-    entityManager.getEntityManagerFactory();
+//    entityManager.getEntityManagerFactory();
     User user = entityManager.find(User.class, id);
     entityManager.detach(user);
     return user;
