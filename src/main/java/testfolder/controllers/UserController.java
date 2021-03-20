@@ -2,6 +2,8 @@ package testfolder.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -12,14 +14,18 @@ import testfolder.model.User;
 import testfolder.service.UserService;
 import testfolder.service.UserServiceImpl;
 
-import javax.naming.Binding;
-import javax.validation.Valid;
 
 @Controller
 public class UserController {
 
-  private UserService userService = new UserServiceImpl();
-// private static User user;
+  private final UserService userService;
+
+  @Autowired
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
+
+  // private static User user;
 //  static {
 //    user = new User();
 //    user.setId(1);
