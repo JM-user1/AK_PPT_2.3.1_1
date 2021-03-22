@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service;
 import testfolder.dao.UserDao;
 import testfolder.model.User;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 @Service
 public class UserServiceImpl implements UserService{
 
+  @PersistenceContext(unitName = "entityManagerFactory")
+  private EntityManager entityManager;
   private final UserDao userDao;
 
   @Autowired
@@ -37,9 +41,16 @@ public class UserServiceImpl implements UserService{
   }
 
   @Override
-  public void edit(int id, User user) {
-    userDao.edit(id, user);
+  @Transactional
+  public void edit(int id, User user){
+    User updatedUser = getById(id);
+    updatedUser.setFirstName(user.getFirstName());
+    updatedUser.setLastName(user.getLastName());
+    updatedUser.setAge(user.getAge());
+    entityManager.merge(updatedUser);
   }
+
+
 
   @Override
   public User getById(int id) {
